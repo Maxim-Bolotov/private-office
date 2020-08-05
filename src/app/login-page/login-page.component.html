@@ -1,0 +1,44 @@
+<form class="card">
+  <h2>Войти в личный кабинет</h2>
+ 
+  <div
+    class="form-control"
+  >
+    <label for="email">Email:</label>
+    <input id="email" type="email">
+    <div
+      class="validation"
+    >
+      <small>
+        Введите поле email
+      </small>
+      <small>
+        Поле email должно быть email
+      </small>
+    </div>
+  </div>
+ 
+  <div
+    class="form-control"
+  >
+    <label for="password">Пароль:</label>
+    <input id="password" type="password" formControlName="password">
+    <div
+      class="validation"
+    >
+      <small>
+        Введите пароль
+      </small>
+      <small>
+        Пароль должен быть не менее
+        символов. Сейчас он
+        символа.
+      </small>
+    </div>
+  </div>
+ 
+  <button
+    type="submit"
+    class="btn btn-primary"
+  >Войти</button>
+</form>

@@ -1,8 +1,27 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { MainLayoutComponent } from './shared/components/main-layout/main-layout.component';
+import { LoginPageComponent } from './login-page/login-page.component';
+import { DashboardPageComponent } from './home-page/dashboard-page/dashboard-page.component';
+import { EditPageComponent } from './home-page/edit-page/edit-page.component';
+import { CreatePageComponent } from './home-page/create-page/create-page.component';
+import { ContactsPageComponent } from './home-page/contacts-page/contacts-page.component';
+import { ContactPageComponent } from './home-page/contact-page/contact-page.component';
 
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: '', component: MainLayoutComponent, children: [
+      {path: '', redirectTo: '/login', pathMatch: 'full'},
+      {path: 'login', component: LoginPageComponent},
+      {path: 'my-contacts', component: ContactsPageComponent},
+      {path: 'contact/:id', component: ContactPageComponent},
+      {path: 'dashboard', component: DashboardPageComponent},
+      {path: 'create', component: CreatePageComponent},
+      {path: 'contact/:id/edit', component: EditPageComponent}
+    ]
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

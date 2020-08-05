@@ -1,0 +1,19 @@
+<nav class="navbar bg-primary">
+  <h1>
+    <a [routerLink]="['/my-contacts']">Private Office</a>
+  </h1>
+ 
+  <ul>
+    <li routerLinkActive="active">
+      <a [routerLink]="['/create']">Создать</a>
+    </li>
+    <li>
+      <a href="#">Выйти</a>
+    </li>
+  </ul>
+</nav>
+ 
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
+ 
