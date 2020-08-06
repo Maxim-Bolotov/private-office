@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,6 +12,7 @@ import { EditPageComponent } from './home-page/edit-page/edit-page.component';
 import { ContactPageComponent } from './home-page/contact-page/contact-page.component';
 import { ContactsPageComponent } from './home-page/contacts-page/contacts-page.component';
 import { PostComponent } from './shared/components/post/post.component';
+import { LoginPageComponent } from './login-page/login-page.component';
 
 @NgModule({
   declarations: [
@@ -18,13 +21,17 @@ import { PostComponent } from './shared/components/post/post.component';
     DashboardPageComponent,
     CreatePageComponent,
     EditPageComponent,
+    LoginPageComponent,
     ContactPageComponent,
     ContactsPageComponent,
-    PostComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
