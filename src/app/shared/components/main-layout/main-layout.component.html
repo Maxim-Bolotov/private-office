@@ -5,7 +5,7 @@
  
   <ul *ngIf="auth.isAuthenticated()">
     <li routerLinkActive="active">
-      <a [routerLink]="['/create']">Создать</a>
+      <a [routerLink]="['/create']">Добавить контакт</a>
     </li>
     <li>
       <a href="#" (click)="logout($event)">Выйти</a>

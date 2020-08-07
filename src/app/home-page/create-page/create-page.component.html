@@ -1,1 +1,46 @@
-<p>create-page works!</p>
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <h1>Новый контакт</h1>
+
+  <div
+    class="form-control"
+    [ngClass]="{invalid: form.get('name').touched && form.get('name').invalid}"
+  >
+    <label for="name">Имя</label>
+    <input id="name" type="text" formControlName="name">
+    <div
+      class="validation"
+      *ngIf="form.get('name').touched && form.get('name').invalid"
+    >
+      <small *ngIf="form.get('name').errors.required">
+        Введите имя контакта
+      </small>
+    </div>
+  </div>
+
+  <div
+    class="form-control"
+    [ngClass]="{invalid: form.get('network').touched && form.get('network').invalid}"
+  >
+    <label for="network"> Социальная сеть</label>
+    <input id="network" type="text" formControlName="network">
+    <div
+      class="validation"
+      *ngIf="form.get('network').touched && form.get('network').invalid"
+    >
+      <small *ngIf="form.get('network').errors.required">
+        Вставьте ссылку на социальную сеть контакта
+      </small>
+    </div>
+  </div>
+
+  <div class="form-control">
+    <label>Информация</label>
+    <quill-editor formControlName="info"></quill-editor>
+  </div>
+
+  <button
+    type="submit"
+    class="btn btn-block btn-dark"
+    [disabled]="form.invalid"
+  >Добавить контакт</button>
+</form>
