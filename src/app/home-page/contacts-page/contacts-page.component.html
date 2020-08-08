@@ -1,5 +1,13 @@
-<div class="contacts">
-   <app-contact></app-contact>
-   <app-contact></app-contact>
-   <app-contact></app-contact>
+<div
+   *ngIf="contacts$ | async as contacts; else loading"
+   class="contacts"
+>
+   <app-contact
+      *ngFor="let contact of contacts"
+      [contact]="contact"
+   ></app-contact>
 </div>
+
+<ng-template #loading>
+   <p class="text-center">Загружаю посты...</p>
+</ng-template>

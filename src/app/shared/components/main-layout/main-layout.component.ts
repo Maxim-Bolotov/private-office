@@ -18,7 +18,6 @@ export class MainLayoutComponent implements OnInit {
   }
 
   logout(event: Event) {
-    console.log(this.auth.token);
     event.preventDefault();
     this.auth.logout();
     this.router.navigate(['login']);

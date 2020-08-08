@@ -1,15 +1,15 @@
 <div class="card">
    <div class="card-header">
-      <h2>Contact name</h2>
-      <small>05.08.2020</small>
+      <h2>{{contact.name}}</h2>
+      <small>{{contact.date | date:'dd.MM.yyyy'}}</small>
    </div>
 
    <div>
-      <small>Социальная сеть:</small>
+      <small>{{contact.network}}</small>
    </div>
 
    <button 
-      [routerLink]="['/contact', 123]"
+      [routerLink]="['/contact', contact.id]"
       class="btn btn-dark"
    >Открыть</button>
 </div>

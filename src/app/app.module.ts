@@ -3,6 +3,8 @@ import { NgModule, Provider } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { QuillModule } from 'ngx-quill';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/ru';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +23,9 @@ const INTERCEPTOR_PROVIDER: Provider = {
   multi: true,
   useClass: AuthInterceptor
 };
+
+registerLocaleData(localeFr, 'ru');
+
 @NgModule({
   declarations: [
     AppComponent,

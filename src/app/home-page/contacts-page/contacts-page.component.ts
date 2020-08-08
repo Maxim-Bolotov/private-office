@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Contact } from 'src/app/shared/interfaces';
+import { ContactsService } from 'src/app/shared/services/contacts.service';
 
 @Component({
   selector: 'app-contacts-page',
@@ -7,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactsPageComponent implements OnInit {
 
-  constructor() { }
+  contacts$: Observable<Contact[]>;
 
-  ngOnInit(): void {
+  constructor(private contactsService: ContactsService) { }
+
+  ngOnInit() {
+    this.contacts$ = this.contactsService.getAll();
   }
 
 }

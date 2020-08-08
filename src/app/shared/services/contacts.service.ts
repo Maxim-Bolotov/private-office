@@ -22,4 +22,27 @@ export class ContactsService {
         };
       }));
   }
+
+  getAll(): Observable<Contact[]> {
+    return this.http.get(`${environment.fbDbUrl}/contacts.json`)
+      .pipe(map((response: {[key: string]: Contact}) => {
+        return Object
+        .keys(response)
+        .map(key => ({
+          ...response[key],
+          id: key,
+          date: new Date(response[key].date)
+        }));
+      }));
+  }
+
+  getById(id: string): Observable<Contact> {
+    return this.http.get<Contact>(`${environment.fbDbUrl}/contacts/${id}.json`)
+      .pipe(map((contact: Contact) => {
+        return {
+          ...contact, id,
+          date: new Date(contact.date)
+        };
+      }));
+  }
 }

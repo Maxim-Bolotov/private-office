@@ -1,20 +1,25 @@
-<div class="contact">
-   <div class="header">
-      <h1>Contact name</h1>
-
-      <button 
-         routerLink="/my-contacts"
-         class="btn btn-link"
-      >На главную</button>
-   </div>
-
-   <div class="info">
-      <strong>Contact photo</strong>
-      <small>12.5.2020</small>
-   </div>
-
-   <div>
-      <p>О контакте</p>
-      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo vitae minus officia illo, nostrum quasi doloremque, quibusdam, quae obcaecati totam sunt magni culpa molestias nulla ea reiciendis praesentium quisquam odit! Maiores fuga voluptas expedita officiis nulla sit adipisci eligendi a reiciendis repudiandae? Alias repellendus excepturi saepe ut voluptas voluptates. Illo.</p>
+<div *ngIf="contact$ | async as contact; else loading">
+   <div class="contact">
+      <div class="header">
+         <h1>{{contact.name}}</h1>
+   
+         <button 
+            routerLink="/my-contacts"
+            class="btn btn-link"
+         >На главную</button>
+      </div>
+   
+      <div class="info">
+         <strong>Зарегистрирован:</strong>
+         <strong>{{contact.date | date:'medium':null:'ru'}}</strong>
+      </div>
+   
+      <div>
+         <quill-view-html [content]="contact.info"></quill-view-html>
+      </div>
    </div>
 </div>
+
+<ng-template #loading>
+   <p class="text-center">Загружаю контакт...</p>
+</ng-template>

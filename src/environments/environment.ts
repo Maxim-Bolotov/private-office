@@ -7,7 +7,7 @@ import { Environment } from './interface';
 export const environment: Environment = {
   production: false,
   apiKey: 'AIzaSyCcARfapPRDJDFnLjVCpWNZe4SVqR3ufHo',
-  fbDbUrl: 'https://private-ofice.firebaseio.com/'
+  fbDbUrl: 'https://private-ofice.firebaseio.com'
 };
 
 /*

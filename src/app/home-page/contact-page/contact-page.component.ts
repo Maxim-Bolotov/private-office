@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Contact } from 'src/app/shared/interfaces';
+import { ActivatedRoute, Params } from '@angular/router';
+import { ContactsService } from 'src/app/shared/services/contacts.service';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-contact-page',
@@ -7,9 +12,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactPageComponent implements OnInit {
 
-  constructor() { }
+  contact$: Observable<Contact>;
 
-  ngOnInit(): void {
+  constructor(
+    private route: ActivatedRoute,
+    private contactsService: ContactsService
+  ) { }
+
+  ngOnInit() {
+    this.contact$ = this.route.params
+      .pipe(switchMap((params: Params) => {
+        return this.contactsService.getById(params['id']);
+      }));
   }
 
 }
