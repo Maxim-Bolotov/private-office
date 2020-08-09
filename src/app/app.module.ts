@@ -7,6 +7,7 @@ import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/ru';
 
 import { AppRoutingModule } from './app-routing.module';
+import { SearchPipe } from './shared/search.pipe';
 import { AppComponent } from './app.component';
 import { MainLayoutComponent } from './shared/components/main-layout/main-layout.component';
 import { DashboardPageComponent } from './home-page/dashboard-page/dashboard-page.component';
@@ -14,7 +15,6 @@ import { CreatePageComponent } from './home-page/create-page/create-page.compone
 import { EditPageComponent } from './home-page/edit-page/edit-page.component';
 import { ContactPageComponent } from './home-page/contact-page/contact-page.component';
 import { ContactsPageComponent } from './home-page/contacts-page/contacts-page.component';
-import { ContactComponent } from './shared/components/contact/contact.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { AuthInterceptor } from './shared/auth.interceptor';
 
@@ -36,7 +36,7 @@ registerLocaleData(localeFr, 'ru');
     LoginPageComponent,
     ContactPageComponent,
     ContactsPageComponent,
-    ContactComponent
+    SearchPipe
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,15 @@
 .contacts {
    max-width: 600px;
    margin: 0 auto;
+
+   .buttons {
+      display: flex;
+      justify-content: space-between;
+
+      div {
+         display: flex;
+         flex-direction: column;
+         text-align: center;
+      }
+   }
 }

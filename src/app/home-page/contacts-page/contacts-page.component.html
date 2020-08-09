@@ -1,13 +1,38 @@
 <div
-   *ngIf="contacts$ | async as contacts; else loading"
    class="contacts"
+   *ngIf="contacts.length; else loading"
 >
-   <app-contact
-      *ngFor="let contact of contacts"
-      [contact]="contact"
-   ></app-contact>
+   <input type="text" placeholder="Поиск контакта..." [(ngModel)]="searchContact">
+   <div 
+      class="card"
+      *ngFor="let contact of contacts | searchContacts:searchContact"
+      >
+      <div class="card-header">
+         <h2>{{contact.name}}</h2>
+         <small>{{contact.date | date:'dd.MM.yyyy'}}</small>
+      </div>
+
+      <div>
+         <small>{{contact.network}}</small>
+      </div>
+      <div class="buttons">
+         <button 
+            class="btn btn-dark"
+            [routerLink]="['/contact', contact.id]"
+         >Открыть</button>
+         <div>
+            <button 
+               class="btn btn-link"
+               [routerLink]="['/contact', contact.id, 'edit']"
+            >Редактировать</button>
+            <a (click)="remove(contact.id)" [routerLink]="['/my-contacts']">Удалить</a>
+         </div>
+      </div>
+   </div>
+
 </div>
 
 <ng-template #loading>
    <p class="text-center">Загружаю посты...</p>
 </ng-template>
+

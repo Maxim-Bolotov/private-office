@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Contact } from 'src/app/shared/interfaces';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ContactsService } from 'src/app/shared/services/contacts.service';
@@ -13,6 +13,8 @@ import { switchMap } from 'rxjs/operators';
 export class ContactPageComponent implements OnInit {
 
   contact$: Observable<Contact>;
+  contacts: Contact[] = [];
+  dSub: Subscription;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,4 +28,9 @@ export class ContactPageComponent implements OnInit {
       }));
   }
 
+  remove(id: string) {
+    this.dSub = this.contactsService.remove(id).subscribe(() => {
+      this.contacts = this.contacts.filter(contact => contact.id !== id);
+    });
+  }
 }

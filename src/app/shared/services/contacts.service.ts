@@ -45,4 +45,12 @@ export class ContactsService {
         };
       }));
   }
+
+  remove(id: string): Observable<void> {
+    return this.http.delete<void>(`${environment.fbDbUrl}/contacts/${id}.json`);
+  }
+
+  update(contact: Contact): Observable<Contact> {
+    return this.http.patch<Contact>(`${environment.fbDbUrl}/contacts/${contact.id}.json`, contact);
+  }
 }

@@ -2,11 +2,9 @@
    <div class="contact">
       <div class="header">
          <h1>{{contact.name}}</h1>
-   
-         <button 
-            routerLink="/my-contacts"
-            class="btn btn-link"
-         >На главную</button>
+         <div class="buttons">
+            <a (click)="remove(contact.id)" [routerLink]="['/my-contacts']">Удалить контакт</a>
+         </div>
       </div>
    
       <div class="info">

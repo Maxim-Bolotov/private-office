@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Contact } from 'src/app/shared/interfaces';
 import { ContactsService } from 'src/app/shared/services/contacts.service';
 
@@ -10,12 +10,22 @@ import { ContactsService } from 'src/app/shared/services/contacts.service';
 })
 export class ContactsPageComponent implements OnInit {
 
-  contacts$: Observable<Contact[]>;
+  contacts: Contact[] = [];
+  pSub: Subscription;
+  dSub: Subscription;
+  searchContact = '';
 
   constructor(private contactsService: ContactsService) { }
 
   ngOnInit() {
-    this.contacts$ = this.contactsService.getAll();
+    this.pSub = this.contactsService.getAll().subscribe(contacts => {
+      this.contacts = contacts;
+    });
   }
 
+  remove(id: string) {
+    this.dSub = this.contactsService.remove(id).subscribe(() => {
+      this.contacts = this.contacts.filter(contact => contact.id !== id);
+    });
+  }
 }
