@@ -2,13 +2,10 @@
    <div class="contact">
       <div class="header">
          <h1>{{contact.name}}</h1>
-         <div class="buttons">
-            <a (click)="remove(contact.id)" [routerLink]="['/my-contacts']">Удалить контакт</a>
-         </div>
       </div>
    
       <div class="info">
-         <strong>Зарегистрирован:</strong>
+         <strong>Добавлен:</strong>
          <strong>{{contact.date | date:'medium':null:'ru'}}</strong>
       </div>
    

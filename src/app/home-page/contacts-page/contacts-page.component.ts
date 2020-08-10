@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Contact } from 'src/app/shared/interfaces';
 import { ContactsService } from 'src/app/shared/services/contacts.service';
+import { AlertService } from 'src/app/shared/services/alert.service';
 
 @Component({
   selector: 'app-contacts-page',
@@ -15,7 +16,10 @@ export class ContactsPageComponent implements OnInit {
   dSub: Subscription;
   searchContact = '';
 
-  constructor(private contactsService: ContactsService) { }
+  constructor(
+    private contactsService: ContactsService,
+    private alert: AlertService
+  ) { }
 
   ngOnInit() {
     this.pSub = this.contactsService.getAll().subscribe(contacts => {
@@ -26,6 +30,7 @@ export class ContactsPageComponent implements OnInit {
   remove(id: string) {
     this.dSub = this.contactsService.remove(id).subscribe(() => {
       this.contacts = this.contacts.filter(contact => contact.id !== id);
+      this.alert.danger('Контакт удален');
     });
   }
 }

@@ -5,6 +5,7 @@ import { switchMap } from 'rxjs/operators';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Contact } from 'src/app/shared/interfaces';
 import { Subscription } from 'rxjs';
+import { AlertService } from 'src/app/shared/services/alert.service';
 
 @Component({
   selector: 'app-edit-page',
@@ -16,11 +17,13 @@ export class EditPageComponent implements OnInit, OnDestroy {
   form: FormGroup;
   contact: Contact;
   submitted = false;
+
   uSub: Subscription;
 
   constructor(
     private route: ActivatedRoute,
-    private contactsService: ContactsService
+    private contactsService: ContactsService,
+    private alert: AlertService
   ) { }
 
   ngOnInit() {
@@ -58,6 +61,7 @@ export class EditPageComponent implements OnInit, OnDestroy {
       network: this.form.value.network
     }).subscribe(() => {
       this.submitted = false;
+      this.alert.warning('Контакт отредактирован');
     });
   }
 }

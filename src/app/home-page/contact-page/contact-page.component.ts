@@ -27,10 +27,4 @@ export class ContactPageComponent implements OnInit {
         return this.contactsService.getById(params['id']);
       }));
   }
-
-  remove(id: string) {
-    this.dSub = this.contactsService.remove(id).subscribe(() => {
-      this.contacts = this.contacts.filter(contact => contact.id !== id);
-    });
-  }
 }

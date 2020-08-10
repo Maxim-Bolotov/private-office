@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Contact } from 'src/app/shared/interfaces';
 import { ContactsService } from 'src/app/shared/services/contacts.service';
+import { AlertService } from 'src/app/shared/services/alert.service';
 
 @Component({
   selector: 'app-create-page',
@@ -12,7 +13,10 @@ export class CreatePageComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(private contactsService: ContactsService) { }
+  constructor(
+    private contactsService: ContactsService,
+    private alert: AlertService
+  ) { }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -36,6 +40,7 @@ export class CreatePageComponent implements OnInit {
 
     this.contactsService.create(contact).subscribe(() => {
       this.form.reset();
+      this.alert.success('Добавлен новый контакт');
     });
   }
 
