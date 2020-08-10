@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { ContactsService } from 'src/app/shared/services/contacts.service';
 import { switchMap } from 'rxjs/operators';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+
+import { ContactsService } from 'src/app/shared/services/contacts.service';
 import { Contact } from 'src/app/shared/interfaces';
 import { Subscription } from 'rxjs';
 import { AlertService } from 'src/app/shared/services/alert.service';

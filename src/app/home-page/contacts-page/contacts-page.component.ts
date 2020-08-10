@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+
 import { Contact } from 'src/app/shared/interfaces';
 import { ContactsService } from 'src/app/shared/services/contacts.service';
 import { AlertService } from 'src/app/shared/services/alert.service';

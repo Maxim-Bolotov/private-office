@@ -5,6 +5,11 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { QuillModule } from 'ngx-quill';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/ru';
+import { ServiceWorkerModule } from '@angular/service-worker';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ScrollingModule, CdkScrollableModule  } from '@angular/cdk/scrolling';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { SearchPipe } from './shared/search.pipe';
@@ -17,6 +22,7 @@ import { ContactsPageComponent } from './home-page/contacts-page/contacts-page.c
 import { LoginPageComponent } from './login-page/login-page.component';
 import { AuthInterceptor } from './shared/auth.interceptor';
 import { AlertComponent } from './shared/components/alert/alert.component';
+import { environment } from '../environments/environment';
 
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
@@ -42,9 +48,13 @@ registerLocaleData(localeFr, 'ru');
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    QuillModule.forRoot()
+    QuillModule.forRoot(),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    ScrollingModule,
+    CdkScrollableModule
   ],
   providers: [INTERCEPTOR_PROVIDER],
   bootstrap: [AppComponent]

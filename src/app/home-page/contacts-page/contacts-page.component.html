@@ -3,36 +3,43 @@
    *ngIf="contacts.length; else loading"
 >
    <input type="text" placeholder="Поиск контакта..." [(ngModel)]="searchContact">
-   <div 
-      class="card"
-      *ngFor="let contact of contacts | searchContacts:searchContact"
-      >
-      <div class="card-header">
-         <h2>{{contact.name}}</h2>
-         <small>{{contact.date | date:'dd.MM.yyyy'}}</small>
-      </div>
 
-      <div>
-         <small>{{contact.network}}</small>
-      </div>
-      <div class="buttons">
-         <button 
-            class="btn btn-dark"
-            [routerLink]="['/contact', contact.id]"
-         >Открыть</button>
-         <div>
-            <button 
-               class="btn btn-link"
-               [routerLink]="['/contact', contact.id, 'edit']"
-            >Редактировать</button>
-            <a (click)="remove(contact.id)" [routerLink]="['/my-contacts']">Удалить</a>
+   <cdk-virtual-scroll-viewport itemSize="150">
+      <div 
+         class="card"
+         *cdkVirtualFor="let contact of contacts | searchContacts:searchContact"
+         >
+         <div class="animate__animated animate__slideInRight">
+            <div class="card-header">
+               <h2>{{contact.name}}</h2>
+               <small>{{contact.date | date:'dd.MM.yyyy'}}</small>
+            </div>
+   
+            <div>
+               <small>{{contact.network}}</small>
+            </div>
+            <div class="buttons">
+               <button 
+                  class="btn btn-dark"
+                  [routerLink]="['/contact', contact.id]"
+               >Открыть</button>
+               <div>
+                  <button 
+                     class="btn btn-link"
+                     [routerLink]="['/contact', contact.id, 'edit']"
+                  >Редактировать</button>
+                  <a 
+                     (click)="remove(contact.id)" 
+                     [routerLink]="['/my-contacts']"
+                  >Удалить</a>
+               </div>
+            </div>
          </div>
       </div>
-   </div>
-
+   </cdk-virtual-scroll-viewport>
 </div>
 
 <ng-template #loading>
-   <p class="text-center">Загружаю посты...</p>
+   <p class="text-center">Загружаю контакты...</p>
 </ng-template>
 

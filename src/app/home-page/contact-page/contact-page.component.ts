@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
-import { Contact } from 'src/app/shared/interfaces';
 import { ActivatedRoute, Params } from '@angular/router';
-import { ContactsService } from 'src/app/shared/services/contacts.service';
 import { switchMap } from 'rxjs/operators';
+
+import { Contact } from 'src/app/shared/interfaces';
+import { ContactsService } from 'src/app/shared/services/contacts.service';
+
 
 @Component({
   selector: 'app-contact-page',
